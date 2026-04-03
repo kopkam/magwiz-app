@@ -151,15 +151,3 @@ magwiz-app/
     ├── 6_order_fulfillment_time.py
     └── 7_warehouse_fill_levels.py
 ```
-
----
-
-## Potential Improvements (Data Engineering Perspective)
-
-- **Cost-weighted ABC Analysis** — current ABC uses sales quantity; weighting by unit cost/revenue gives a more accurate Pareto classification
-- **Inventory transaction log** — current model stores only daily snapshots; a movements table (receipts, shipments, adjustments) would enable shrinkage tracking and delta analysis
-- **Automated ETL pipeline** — replace manual Excel sync with a scheduled pipeline (e.g. Airflow, Prefect, or a simple cron job calling the sync logic)
-- **Slowly Changing Dimensions** — safety stock thresholds and warehouse capacities change over time; versioning them enables historical KPI accuracy
-- **Referential integrity validation** — add data quality checks before loading (null primary keys, orphan foreign keys, type mismatches)
-- **Delay root-cause tracking** — current status is binary (on time / delayed); adding a reason code field enables root cause analysis
-- **Reorder point automation** — derive safety stock dynamically from average lead time × average daily demand instead of static values
